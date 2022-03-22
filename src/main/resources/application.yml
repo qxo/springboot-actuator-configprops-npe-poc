@@ -1,0 +1,32 @@
+server:
+  port: 8081
+spring:
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:7070
+#        username: admin
+#        password: admin
+#        instance:
+#          metadata:
+#            user.name: ${spring.security.user.name}
+#            user.password: ${spring.security.user.password}
+#  security:
+#    user:
+#      name: admin
+#      password: admin
+
+  application:
+    name: spring-boot-demo-poc
+
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+server.error.include-message: always
+server.error.include-exception: true
+server.error.include-stacktrace: always
+server.error.include-binding-errors: always
