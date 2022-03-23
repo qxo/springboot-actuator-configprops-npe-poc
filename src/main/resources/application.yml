@@ -13,8 +13,8 @@ spring:
 #            user.password: ${spring.security.user.password}
 #  security:
 #    user:
-#      name: admin
-#      password: admin
+#      name: root
+#      password: root
 
   application:
     name: spring-boot-demo-poc

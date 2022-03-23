@@ -2,6 +2,11 @@ NPE for /actuator/configprops POC
 ==================================
 * start spring-boot app (SpringbootActuatorConfigpropsPocApplication)
 
+```
+mvn spring-boot:run 
+```
+
+
 * visit http://127.0.0.1:8081/actuator/configprops we see the issue.
 
 ```
@@ -27,10 +32,26 @@ java.lang.NullPointerException
 	at org.springframework.boot.actuate.endpoint.invoke.reflect.ReflectiveOperationInvoker.invoke(ReflectiveOperationInvoker.java:74)
 	at org.springframework.boot.actuate.endpoint.annotation.AbstractDiscoveredOperation.invoke(AbstractDiscoveredOperation.java:60)
 ```
+* In **`@ConfigurationProperties` bean** class with **`@bean`** on **static method** which **the return type do not have ConfigurationProperties** annotation will trigger the issue.
+ie:
+
+```
+@Configuration("appConfig")
+@ConfigurationProperties("app")
+public class AppConfig {
+
+	// @Bean on static method and the return type without ConfigurationProperties annotation will trigger the issue
+	@Bean("testbean2")
+	public static Object testBean2() {
+		return new Object();
+	}
+	
+	//...
+}
+```
 
 * `ConfigurationPropertiesBean.getAll` should ignored the null value (ConfigurationPropertiesBean) in the return Map.
 
-* In `@ConfigurationProperties` bean class some `@bean` do not have ConfigurationProperties annotation will trigger the issue.
 
 
 ## ref

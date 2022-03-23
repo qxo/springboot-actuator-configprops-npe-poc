@@ -9,7 +9,4 @@ public class SpringbootActuatorConfigpropsPocApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootActuatorConfigpropsPocApplication.class, args);
 	}
-
-
-
 }
